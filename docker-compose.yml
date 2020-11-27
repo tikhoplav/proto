@@ -5,8 +5,7 @@ volumes:
 
 services:
   app:
-    build: .
-    image: proto/php:dev
+    image: tikhoplav/laravel:dev
     working_dir: /var/www
     volumes:
       - ./src:/var/www
