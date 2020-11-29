@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Ledge;
+use App\Models\Ledger;
 use Illuminate\Database\Seeder;
 
-class LedgeSeeder extends Seeder
+class LedgerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,33 +14,33 @@ class LedgeSeeder extends Seeder
      */
     public function run()
     {
-    	Ledge::truncate();
+    	Ledger::truncate();
 
-    	Ledge::create([
+    	Ledger::create([
             'name' => 'Активы',
         ]);
-        Ledge::create([
+        Ledger::create([
             'name' => 'Запасы',
         ]);
-        Ledge::create([
+        Ledger::create([
             'name' => 'Затраты',
         ]);
-        Ledge::create([
+        Ledger::create([
             'name' => 'Инвестиции',
         ]);
-        Ledge::create([
+        Ledger::create([
             'name' => 'Денежные средства',
         ]);
-        Ledge::create([
+        Ledger::create([
             'name' => 'Расчеты',
         ]);
-        Ledge::create([
+        Ledger::create([
             'name' => 'Кредиты и займы',
         ]);
-        Ledge::create([
+        Ledger::create([
             'name' => 'Финансовые результаты',
         ]);
-        Ledge::create([
+        Ledger::create([
             'name' => 'Забалансовые счета',
         ]);
     }

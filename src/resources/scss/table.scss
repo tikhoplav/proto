@@ -1,13 +1,10 @@
 .table {
 	width: 100%;
-	border-collapse: collapse;
 
-	& td, & th {
-		padding: .3rem;
+	&, &-cell, &-header {
 		text-align: left;
+		padding: 8px;
+		border-collapse: collapse;
 		border: 1px solid #e0e0e0;
 	}
 }
-
-
-

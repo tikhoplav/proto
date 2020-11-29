@@ -35,12 +35,32 @@ class Account extends Model
     protected $fillable = ['id', 'name'];
 
     /**
-     * Get ledge that the account belongs to.
+     * Get ledger that the account belongs to.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function ledge()
+    public function ledger()
     {
-    	return $this->belongsTo(Ledge::class);
+    	return $this->belongsTo(Ledger::class);
+    }
+
+    /**
+     * Get transactions by debit of the account.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function debits()
+    {
+        return $this->hasMany(Transaction::class, 'dr');
+    }
+
+    /**
+     * Get transactions by credit of the account.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function credits()
+    {
+        return $this->hasMany(Transaction::class, 'cr');
     }
 }

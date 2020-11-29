@@ -1,7 +1,7 @@
 .container {
 	width: 100%;
-	padding-right: 16px;
 	padding-left: 16px;
+	padding-right: 16px;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -9,8 +9,8 @@
 .row {
 	display: flex;
 	flex-flow: row nowrap;
-	margin-right: -16px;
 	margin-left: -16px;
+	margin-right: -16px;
 }
 
 %grid-col {

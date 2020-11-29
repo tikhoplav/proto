@@ -2,8 +2,8 @@
 
 0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);.container {
   width: 100%;
-  padding-right: 16px;
   padding-left: 16px;
+  padding-right: 16px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -11,8 +11,8 @@
 .row {
   display: flex;
   flex-flow: row nowrap;
-  margin-right: -16px;
   margin-left: -16px;
+  margin-right: -16px;
 }
 
 .col-12,
@@ -86,20 +86,21 @@
   width: 100%;
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.table td,
-.table th {
-  padding: 0.3rem;
-  text-align: left;
-  border: 1px solid #e0e0e0;
-}
-
 .input {
   padding: 8px;
+}
+
+.table {
+  width: 100%;
+}
+
+.table,
+.table-cell,
+.table-header {
+  text-align: left;
+  padding: 8px;
+  border-collapse: collapse;
+  border: 1px solid #e0e0e0;
 }
 
 body,
@@ -109,6 +110,6 @@ body * {
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
-  line-height: 1.6rem;
+  line-height: 1.2rem;
 }
 

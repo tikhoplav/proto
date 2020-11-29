@@ -13,7 +13,7 @@ class CreateLedgesTable extends Migration
      */
     public function up()
     {
-        Schema::create('ledges', function (Blueprint $table) {
+        Schema::create('ledgers', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
         });

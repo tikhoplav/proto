@@ -1,6 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Operations\CreateTransaction;
+use App\Http\Controllers\Registries\AccountsChart;
+use App\Http\Controllers\Registries\OperationsChart;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('operations')->group(function () {
+	Route::post('transaction', CreateTransaction::class);
+});
+
+Route::prefix('registries')->group(function () {
+	Route::get('accounts', AccountsChart::class);
+	Route::get('operations', OperationsChart::class);
+});
+
+Route::prefix('reports')->group(function () {
+	//
 });
