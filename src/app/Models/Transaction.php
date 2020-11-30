@@ -133,7 +133,7 @@ class Transaction extends Model
         int $year = null
     ): Builder {
         $month = $month ?? date('m');
-        $year  = $year ?? date('y');
+        $year  = $year ?? date('Y');
 
         return $query
             ->whereMonth('created_at', $month)
