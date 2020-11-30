@@ -1,14 +1,16 @@
 <template>
-<table class="table">
-	<tr class="table-headers">
-		<th class="table-header">№</th>
-		<th class="table-header">Наименование счета</th>
-	</tr>
-	<tr class="table-row" v-for="row in rows" :key="row.id">
-		<td class="table-cell">{{ row.id }}</td>
-		<td class="table-cell">{{ row.name }}</td>
-	</tr>
-</table>
+<v-table class="accounts">
+	<template v-slot:header>
+		<v-col fixed>№</v-col>
+		<v-col>Наименование счета</v-col>
+	</template>
+
+	<v-row v-for="row in rows" :key="row.id">
+		<v-col fixed>{{ row.id }}</v-col>
+		<v-col>{{ row.name }}</v-col>
+	</v-row>
+	
+</v-table>
 </template>
 
 <script>
@@ -29,3 +31,17 @@ export default {
 	},
 };
 </script>
+
+<style lang="scss">
+.accounts {
+	& .v-row .v-col {
+		&:nth-child(1) {
+			flex-basis: 3.2rem;
+		}
+
+		&:nth-child(2) {
+			flex-basis: 100%;
+		}
+	}
+}
+</style>

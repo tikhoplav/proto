@@ -44,22 +44,28 @@ export default {
 		left: 0;
 		bottom: 0;
 		width: 260px;
-		padding: 16px;
+		padding: 1.6rem;
 		border-right: 1px solid #e0e0e0;
 	}
 
 	&-link, &-group {
-		padding: 8px 16px;
-		margin: 0 -16px;
+		padding: .8rem 1.6rem;
+		margin: 0 -1.6rem;
 		line-height: 1.6rem;
 	}
 
 	&-group {
-		padding-top: 32px;
+		padding-top: 3.2rem;
 		color: #505050;
 	}
 
 	&-link {
+		cursor: pointer;
+
+		&:hover {
+			background-color: #d5e5ff;
+		}
+
 		&.active {
 			font-weight: 600;
 			background-color: #A8C9FF;
