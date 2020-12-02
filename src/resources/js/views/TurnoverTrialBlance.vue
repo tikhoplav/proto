@@ -192,10 +192,10 @@ export default {
         const date = new Date();        
 
         this.start_date = (new Date(date.getFullYear(), date.getMonth(), 1))
-            .toLocaleDateString('ru-RU');
+            toISOString().slice(0,10);
 
         this.end_date = (new Date(date.getFullYear(), date.getMonth() + 1, 0))
-            .toLocaleDateString('ru-RU');
+            toISOString().slice(0,10);
 
         this.fetch();
     },
