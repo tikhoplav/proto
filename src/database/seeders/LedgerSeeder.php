@@ -20,9 +20,6 @@ class LedgerSeeder extends Seeder
             'name' => 'Активы',
         ]);
         Ledger::create([
-            'name' => 'Запасы',
-        ]);
-        Ledger::create([
             'name' => 'Затраты',
         ]);
         Ledger::create([
@@ -39,9 +36,6 @@ class LedgerSeeder extends Seeder
         ]);
         Ledger::create([
             'name' => 'Финансовые результаты',
-        ]);
-        Ledger::create([
-            'name' => 'Забалансовые счета',
         ]);
     }
 }
