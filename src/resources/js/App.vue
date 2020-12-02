@@ -21,6 +21,7 @@
 import VSidebar from "./modules/VSidebar.vue";
 import AccountsChart from "./views/AccountsChart.vue";
 import OperationsChart from "./views/OperationsChart.vue";
+import TurnoverTrialBalance from "./views/TurnoverTrialBlance.vue";
 
 export default {
 	name: 'App',
@@ -28,9 +29,10 @@ export default {
 		VSidebar,
 		AccountsChart,
 		OperationsChart,
+		TurnoverTrialBalance,
 	},
 	data: () => ({
-		path: "operations-chart",
+		path: "turnover-trial-balance",
 	}),
 	mounted() {
 		window.axios = this.$http;

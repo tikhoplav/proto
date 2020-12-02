@@ -6,10 +6,17 @@
 		</div>
 		<div
 		 class="v_sidebar-link"
+		 @click="$emit('input', 'turnover-trial-balance')"
+		 :class="{active: value === 'turnover-trial-balance'}"
+		>
+			1.1. Оборотно-сальдовая ведомость
+		</div>
+		<div
+		 class="v_sidebar-link"
 		 @click="$emit('input', 'operations-chart')"
 		 :class="{active: value === 'operations-chart'}"
 		>
-			1.1. Книга учета операций
+			1.2. Книга учета операций
 		</div>
 		<div class="v_sidebar-group">
 			2. Регистры

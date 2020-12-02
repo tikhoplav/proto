@@ -35,7 +35,7 @@ export default {
 	}),
 	methods: {
 		async fetch() {
-			const { data } = await this.$http.get('/registries/operations');
+			const { data } = await this.$http.get('registries/operations');
 			this.rows = data;
 		},
 	},

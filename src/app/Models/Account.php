@@ -83,20 +83,20 @@ class Account extends Model
     ): Builder {
         $dr = Transaction::groupBy('dr')
             ->interval($after, $before)
-            ->selectRaw('dr as id, SUM(amount) as debit')
+            ->selectRaw('dr as account_id, SUM(amount) as debit')
         ;
 
         $cr = Transaction::groupBy('cr')
             ->interval($after, $before)
-            ->selectRaw('cr as id, SUM(amount) as credit')
+            ->selectRaw('cr as account_id, SUM(amount) as credit')
         ;
 
         return $query
             ->leftJoinSub($dr, 'debit', function ($join) {
-                $join->on('debit.id', 'accounts.id');
+                $join->on('debit.account_id', 'accounts.id');
             })
             ->leftJoinSub($cr, 'credit', function ($join) {
-                $join->on('credit.id', 'accounts.id');
+                $join->on('credit.account_id', 'accounts.id');
             })
         ;
     }

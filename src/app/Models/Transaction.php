@@ -104,7 +104,7 @@ class Transaction extends Model
         string $before = null
     ): Builder {
         if ($after) {
-            $after = Carbon::parse($before)->hour(0)->minute(0)->second(0);
+            $after = Carbon::parse($after)->hour(0)->minute(0)->second(0);
             $query = $query->where('created_at', '>=', $after);
         }
 

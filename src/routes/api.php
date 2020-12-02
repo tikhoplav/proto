@@ -3,6 +3,7 @@
 use App\Http\Controllers\Operations\CreateTransaction;
 use App\Http\Controllers\Registries\AccountsChart;
 use App\Http\Controllers\Registries\OperationsChart;
+use App\Http\Controllers\Reports\TrialBalance;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,5 +27,5 @@ Route::prefix('registries')->group(function () {
 });
 
 Route::prefix('reports')->group(function () {
-	//
+	Route::get('trial_balance', TrialBalance::class);
 });

@@ -9,12 +9,16 @@ export default {
     name: 'VRow',
     props: {
         wrap: Boolean,
+        align: String,
     },
     computed: {
         mods() {
-            return {
-                wrap: this.wrap,
-            };  
+            return [
+                {
+                    wrap: this.wrap,
+                },
+                `align-${this.align}`,
+            ];  
         },
     },
 };
@@ -29,6 +33,10 @@ export default {
     
     &.wrap {
         flex-wrap: wrap;
+    }
+
+    &.align-center {
+        align-items: center;
     }
 }
 </style>

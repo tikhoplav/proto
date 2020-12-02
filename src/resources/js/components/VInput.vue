@@ -7,6 +7,8 @@
   @input="$emit('input', $event.target.value)"
   @change="$emit('change', $event.target.value)"
   :disabled="disabled"
+  :type="type"
+  :checked="checked"
 />
 </template>
 
@@ -14,8 +16,10 @@
 export default {
     name: "VInput",
     props: {
-        value: String,
+        value: [String, Number],
         disabled: Boolean,
+        type: String,
+        checked: Boolean,
     },
 };
 </script>

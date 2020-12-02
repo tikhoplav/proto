@@ -21,7 +21,7 @@ export default {
 	}),
 	methods: {
 		async fetch() {
-			const { data } = await this.$http.get('/registries/accounts');
+			const { data } = await this.$http.get('registries/accounts');
 			const reducer = (acc, { accounts }) => [...acc, ...accounts];
 			this.rows = data.reduce(reducer, []);
 		},
