@@ -26,7 +26,7 @@
 		 @click="$emit('input', 'accounts-chart')"
 		 :class="{active: value === 'accounts-chart'}"
 		>
-			2.1 Расписание счетов
+			2.1 План счетов
 		</div>
 	</div>
 </div>

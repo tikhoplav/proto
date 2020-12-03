@@ -81,18 +81,22 @@ class AccountSeeder extends Seeder
         ]);
         Account::firstOrCreate(['id' => '28'], [
             'ledger_id' => 2,
-            'name' => 'Бытовые расходы',
+            'name' => 'Расходы на ребенка',
         ]);
         Account::firstOrCreate(['id' => '29'], [
+            'ledger_id' => 2,
+            'name' => 'Бытовые расходы',
+        ]);
+        Account::firstOrCreate(['id' => '30'], [
             'ledger_id' => 2,
             'name' => 'Прочие расходы',
         ]);
 
         // Раздел III. Инвестиции.
 
-        Account::firstOrCreate(['id' => '30'], [
+        Account::firstOrCreate(['id' => '40'], [
         	'ledger_id' => 3,
-        	'name' => 'Другие инвестиции',
+        	'name' => 'Инвестиции',
         ]);
 
         // Раздел IV. Денежные средства.
