@@ -7,6 +7,7 @@
 		<v-col fixed>Кредит</v-col>
 		<v-col fixed>Сумма</v-col>
 		<v-col>Примечание</v-col>
+		<v-col>Субконто</v-col>
 	</template>
 
 	<v-row v-for="row in rows" :key="row.id">
@@ -15,7 +16,14 @@
 		<v-col fixed>{{ row.dr }}</v-col>
 		<v-col fixed>{{ row.cr }}</v-col>
 		<v-col fixed>{{ row.amount }}</v-col>
-		<v-col>{{ row.description }}</v-col>
+		<v-col><v-elli>{{ row.description }}</v-elli></v-col>
+		<v-col>
+			<v-badger>
+				<v-badge v-for="sub in row.subconto" :key="sub.uid">
+					{{ sub.uid }}
+				</v-badge>
+			</v-badger>
+		</v-col>
 	</v-row>
 
 	<create-transaction @created="fetch"/>
@@ -23,12 +31,14 @@
 </template>
 
 <script>
+import VBadge from '../components/VBadge.vue';
 import CreateTransaction from "../modules/CreateTransaction.vue";
 
 export default {
 	name: 'OperationsChart',
 	components: {
 		CreateTransaction,
+VBadge,
 	},
 	data: () => ({
 		rows: [],
@@ -48,6 +58,8 @@ export default {
 <style lang="scss">
 .operations {
 	& .v-row .v-col {
+		flex-basis: 100%;
+
 		&:nth-child(1) {
 			flex-basis: 3.2rem;
 		}
@@ -65,7 +77,7 @@ export default {
 		}
 
 		&:nth-child(6) {
-			flex-basis: 100%;
+			flex-basis: 33%;
 		}
 	}
 }

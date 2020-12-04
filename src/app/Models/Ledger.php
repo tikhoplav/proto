@@ -73,47 +73,4 @@ class Ledger extends Model
             $join->on('balance.id', 'ledgers.id');
         });
     }
-
-    /**
-     * Scopes a query to attach a balance for each ledger,
-     * as the result of grouping balances for all accounts. If 
-     * parameters are omitted, current month and year will be used.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int|null $month
-     * @param int|null $year
-     * @param bool $detailed
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeDuring(
-        Builder $query,
-        int $month = null,
-        int $year = null,
-        bool $detailed = false
-    ): Builder {
-        if ($detailed) {
-            $query = $query
-                ->with('accounts', function ($q) use ($month, $year) {
-                    $q->during($month, $year)
-                        ->where('debit', '<>', null)
-                        ->orWhere('credit', '<>', null)
-                    ;
-                })
-            ;
-        }
-        
-        $balance = Account::groupBy('ledger_id')
-            ->during($month, $year)
-            ->selectRaw("
-                ledger_id as id,
-                SUM(debit) as debit,
-                SUM(credit) as credit
-            ")
-        ;
-
-        return $query->leftJoinSub($balance, 'balance', function ($join) {
-            $join->on('balance.id', 'ledgers.id');
-        });
-    }
 }

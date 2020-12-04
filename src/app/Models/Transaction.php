@@ -4,7 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class Transaction extends Model
 {
@@ -40,51 +43,53 @@ class Transaction extends Model
     ];
 
     /**
-     * Get account that the transaction debits to.
+     * The accessors to append to the model's array form.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @var array
      */
-    public function debit()
+    protected $appends = [
+        'subconto',
+    ];
+
+    /**
+     * Get all related subconto to the transaction
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function getSubcontoAttribute(): Collection
     {
-    	return $this->belongsTo(Account::class, 'dr');
+        return collect(DB::table('subconto')
+            ->where('transaction_id', $this->id)
+            ->selectRaw("CONCAT(subconto_type, '/', subconto_id) as uid")
+            ->get()
+        );
     }
 
     /**
-     * Get account that the transaction credit to.
+     * Set transaction subconto
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @param \Illuminate\Support\Collection $subconto
+     *
+     * @return void
      */
-    public function credit()
+    public function setSubcontoAttribute(Collection $subconto): void
     {
-    	return $this->belongsTo(Account::class, 'cr');
-    }
+        $data = $subconto->map(function ($item) {
+            if (is_array($item)) {
+                $item = (object) $item;
+            }
 
-    /**
-     * Scope a query to include transactions which have the specified
-     * account in debit.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string $value
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeDebit(Builder $query, string $value): Builder
-    {
-        return $query->where('dr', $value);
-    }
+            $uid = Str::of($item->uid)->explode('/');
 
-    /**
-     * Scope a query to include transactions which have the specified
-     * account in debit.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string $value
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeCredit(Builder $query, string $value): Builder
-    {
-        return $query->where('cr', $value);
+            return [
+                'transaction_id' => $this->id,
+                'subconto_id' => $uid->pop(),
+                'subconto_type' => $uid->join('/'),
+            ];
+        });
+
+        DB::table('subconto')->where('transaction_id', $this->id)->delete();
+        DB::table('subconto')->insert($data->all());
     }
 
     /**
@@ -114,42 +119,5 @@ class Transaction extends Model
         }
 
         return $query;
-    }
-
-    /**
-     * Scope a query to include ttransactions registered during the
-     * specified month of the specified year. If parameters omitted,
-     * current month and year will be used.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int|null $month
-     * @param int|null $year
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeDuring(
-        Builder $query,
-        int $month = null,
-        int $year = null
-    ): Builder {
-        $month = $month ?? date('m');
-        $year  = $year ?? date('Y');
-
-        return $query
-            ->whereMonth('created_at', $month)
-            ->whereYear('created_at', $year)
-        ;
-    }
-
-    /**
-     * Returns result of suming amounts of selected transactions.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
-     * @return float
-     */
-    public function scopeTotal(Builder $query): float
-    {
-        return (float) $query->sum('amount');
     }
 }

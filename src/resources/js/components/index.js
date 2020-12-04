@@ -1,17 +1,23 @@
-import VTable from './VTable.vue';
-import VCont from './VCont.vue';
-import VRow from "./VRow.vue";
+import VBadge from "./VBadge.vue";
+import VBadger from "./VBadger.vue";
+import VBtn from "./VBtn.vue";
 import VCol from "./VCol.vue";
+import VCont from './VCont.vue';
+import VElli from './VElli.vue';
 import VInput from "./VInput";
-import VBtn from "./VBtn";
+import VRow from "./VRow.vue";
+import VTable from './VTable.vue';
 
 export default {
 	install: Vue => {
-		Vue.component('v-table', VTable);
-		Vue.component('v-cont', VCont);
-		Vue.component('v-row', VRow);
-		Vue.component('v-col', VCol);
-		Vue.component('v-input', VInput);
+		Vue.component('v-badge', VBadge);
+		Vue.component('v-badger', VBadger);
 		Vue.component('v-btn', VBtn);
+		Vue.component('v-col', VCol);
+		Vue.component('v-cont', VCont);
+		Vue.component('v-elli', VElli);
+		Vue.component('v-input', VInput);
+		Vue.component('v-row', VRow);
+		Vue.component('v-table', VTable);
 	},
 };

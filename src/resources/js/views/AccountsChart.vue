@@ -1,5 +1,5 @@
 <template>
-<v-table class="accounts">
+<v-table class="accounts" clickable>
 	<template v-slot:header>
 		<v-col fixed>№</v-col>
 		<v-col>Наименование счета</v-col>

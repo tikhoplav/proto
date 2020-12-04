@@ -22,6 +22,7 @@ import VSidebar from "./modules/VSidebar.vue";
 import AccountsChart from "./views/AccountsChart.vue";
 import OperationsChart from "./views/OperationsChart.vue";
 import TurnoverTrialBalance from "./views/TurnoverTrialBlance.vue";
+import PeopleChart from "./views/PeopleChart.vue";
 
 export default {
 	name: 'App',
@@ -30,6 +31,7 @@ export default {
 		AccountsChart,
 		OperationsChart,
 		TurnoverTrialBalance,
+		PeopleChart,
 	},
 	data: () => ({
 		path: "turnover-trial-balance",

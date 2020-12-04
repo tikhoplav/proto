@@ -100,40 +100,4 @@ class Account extends Model
             })
         ;
     }
-
-    /**
-     * Scopes a query to attach a balance to each account, based on the
-     * transaction calculation of the given month and year number. If 
-     * parameters are omitted, current month and year will be used.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int|null $month
-     * @param int|null $year
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeDuring(
-        Builder $query,
-        int $month = null,
-        int $year = null
-    ): Builder {
-        $dr = Transaction::groupBy('dr')
-            ->during($month, $year)
-            ->selectRaw('dr as id, SUM(amount) as debit')
-        ;
-
-        $cr = Transaction::groupBy('cr')
-            ->during($month, $year)
-            ->selectRaw('cr as id, SUM(amount) as credit')
-        ;
-
-        return $query
-            ->leftJoinSub($dr, 'debit', function ($join) {
-                $join->on('debit.id', 'accounts.id');
-            })
-            ->leftJoinSub($cr, 'credit', function ($join) {
-                $join->on('credit.id', 'accounts.id');
-            })
-        ;
-    }
 }

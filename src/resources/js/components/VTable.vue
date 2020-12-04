@@ -1,5 +1,5 @@
 <template>
-<div class="v-table">
+<div class="v-table" :class="mods">
     <v-row class="v-header">
         <slot name="header"></slot>
     </v-row>
@@ -11,6 +11,16 @@
 <script>
 export default {
     name: 'VTable',
+    props: {
+        clickable: Boolean,
+    },
+    computed: {
+        mods() {
+            return {
+                clickable: this.clickable,
+            };
+        },
+    },
 };
 </script>
 
@@ -33,9 +43,13 @@ export default {
         padding: .6rem;
         border-right: $border;
         border-bottom: $border;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    }
+
+    &.clickable {
+        & .v-row:not(.v-header):hover {
+            background-color: #d5e5ff;
+            cursor: pointer;
+        }
     }
 }
 </style>

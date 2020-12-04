@@ -6,6 +6,9 @@ use App\Http\Controllers\Registries\OperationsChart;
 use App\Http\Controllers\Reports\TrialBalance;
 use Illuminate\Support\Facades\Route;
 
+// Subconto controllers (api resource)
+use App\Http\Controllers\PersonController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,3 +32,7 @@ Route::prefix('registries')->group(function () {
 Route::prefix('reports')->group(function () {
 	Route::get('trial_balance', TrialBalance::class);
 });
+
+Route::apiResources([
+    'person' => PersonController::class,
+]);
