@@ -92,50 +92,47 @@ class AccountSeeder extends Seeder
             'name' => 'Прочие расходы',
         ]);
 
-        // Раздел III. Инвестиции.
-
-        Account::firstOrCreate(['id' => '40'], [
-        	'ledger_id' => 3,
-        	'name' => 'Инвестиции',
-        ]);
-
-        // Раздел IV. Денежные средства.
+        // Раздел III. Денежные средства.
 
         Account::firstOrCreate(['id' => '50'], [
-        	'ledger_id' => 4,
+        	'ledger_id' => 3,
         	'name' => 'Наличные средства',
         ]);
         Account::firstOrCreate(['id' => '55'], [
-        	'ledger_id' => 4,
+        	'ledger_id' => 3,
         	'name' => 'Дебитные карты',
         ]);
+        Account::firstOrCreate(['id' => '58'], [
+            'ledger_id' => 3,
+            'name' => 'Инвестиции',
+        ]);
 
-        // Раздел V. Расчеты.
+        // Раздел IV. Расчеты.
 
         Account::firstOrCreate(['id' => '60'], [
-        	'ledger_id' => 5,
+        	'ledger_id' => 4,
         	'name' => 'Поставщики и подрядчики',
         ]);
         Account::firstOrCreate(['id' => '62'], [
-        	'ledger_id' => 5,
+        	'ledger_id' => 4,
         	'name' => 'Покупатели и заказчики',
         ]);
 
-        // Раздел VI. Кредиты и займы.
+        // Раздел V. Кредиты и займы.
 
         Account::firstOrCreate(['id' => '76'], [
-        	'ledger_id' => 6,
+        	'ledger_id' => 5,
         	'name' => 'Прочие кредиторы и дебиторы',
         ]);
 
-        // Раздел VII. Финансовые результаты.
+        // Раздел VI. Финансовые результаты.
 
         Account::firstOrCreate(['id' => '90'], [
-        	'ledger_id' => 7,
+        	'ledger_id' => 6,
         	'name' => 'Доходы и расходы',
         ]);
         Account::firstOrCreate(['id' => '99'], [
-            'ledger_id' => 7,
+            'ledger_id' => 6,
             'name' => 'Прибыли и убытки',
         ]);
     }

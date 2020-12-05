@@ -7,6 +7,9 @@ import VElli from './VElli.vue';
 import VInput from "./VInput";
 import VRow from "./VRow.vue";
 import VTable from './VTable.vue';
+import VTd from './VTd.vue';
+import VTh from './VTh.vue';
+import VTr from './VTr.vue';
 
 export default {
 	install: Vue => {
@@ -19,5 +22,8 @@ export default {
 		Vue.component('v-input', VInput);
 		Vue.component('v-row', VRow);
 		Vue.component('v-table', VTable);
+		Vue.component('v-td', VTd);
+		Vue.component('v-th', VTh);
+		Vue.component('v-tr', VTr);
 	},
 };

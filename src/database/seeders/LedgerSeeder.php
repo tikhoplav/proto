@@ -23,9 +23,6 @@ class LedgerSeeder extends Seeder
             'name' => 'Затраты',
         ]);
         Ledger::create([
-            'name' => 'Инвестиции',
-        ]);
-        Ledger::create([
             'name' => 'Денежные средства',
         ]);
         Ledger::create([

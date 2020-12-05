@@ -1,15 +1,16 @@
 <template>
 <v-table class="accounts" clickable>
-	<template v-slot:header>
-		<v-col fixed>№</v-col>
-		<v-col>Наименование счета</v-col>
+	<template v-slot:head>
+		<v-tr>
+			<v-th>№</v-th>
+			<v-th>Наименование счета</v-th>
+		</v-tr>
 	</template>
 
-	<v-row v-for="row in rows" :key="row.id">
-		<v-col fixed>{{ row.id }}</v-col>
-		<v-col>{{ row.name }}</v-col>
-	</v-row>
-	
+	<v-tr v-for="row in rows" :key="row.id">
+		<v-td>{{ row.id }}</v-td>
+		<v-td>{{ row.name }}</v-td>
+	</v-tr>
 </v-table>
 </template>
 
@@ -31,17 +32,3 @@ export default {
 	},
 };
 </script>
-
-<style lang="scss">
-.accounts {
-	& .v-row .v-col {
-		&:nth-child(1) {
-			flex-basis: 3.2rem;
-		}
-
-		&:nth-child(2) {
-			flex-basis: 100%;
-		}
-	}
-}
-</style>

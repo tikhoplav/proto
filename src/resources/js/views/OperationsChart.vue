@@ -1,44 +1,40 @@
 <template>
-<v-table class="operations">
-	<template v-slot:header>
-		<v-col fixed>№</v-col>
-		<v-col fixed>Время/Дата</v-col>
-		<v-col fixed>Дебит</v-col>
-		<v-col fixed>Кредит</v-col>
-		<v-col fixed>Сумма</v-col>
-		<v-col>Примечание</v-col>
-		<v-col>Субконто</v-col>
+<v-table class="operations" clickable>
+	<template v-slot:head>
+		<v-th>№</v-th>
+		<v-th>Время/Дата</v-th>
+		<v-th>Дебит</v-th>
+		<v-th>Кредит</v-th>
+		<v-th>Сумма</v-th>
+		<v-th>Примечание</v-th>
+		<v-th>Субконто</v-th>
 	</template>
 
-	<v-row v-for="row in rows" :key="row.id">
-		<v-col fixed>{{ row.id }}</v-col>
-		<v-col fixed>{{ row.created_at }}</v-col>
-		<v-col fixed>{{ row.dr }}</v-col>
-		<v-col fixed>{{ row.cr }}</v-col>
-		<v-col fixed>{{ row.amount }}</v-col>
-		<v-col><v-elli>{{ row.description }}</v-elli></v-col>
-		<v-col>
+	<v-tr v-for="row in rows" :key="row.id">
+		<v-td>{{ row.id }}</v-td>
+		<v-td>{{ row.created_at }}</v-td>
+		<v-td>{{ row.dr }}</v-td>
+		<v-td>{{ row.cr }}</v-td>
+		<v-td num>{{ row.amount }}</v-td>
+		<v-td><v-elli>{{ row.description }}</v-elli></v-td>
+		<v-td>
 			<v-badger>
 				<v-badge v-for="sub in row.subconto" :key="sub.uid">
 					{{ sub.uid }}
 				</v-badge>
 			</v-badger>
-		</v-col>
-	</v-row>
-
-	<create-transaction @created="fetch"/>
+		</v-td>
+	</v-tr>
 </v-table>
 </template>
 
 <script>
 import VBadge from '../components/VBadge.vue';
-import CreateTransaction from "../modules/CreateTransaction.vue";
 
 export default {
 	name: 'OperationsChart',
 	components: {
-		CreateTransaction,
-VBadge,
+		VBadge,
 	},
 	data: () => ({
 		rows: [],
@@ -54,31 +50,3 @@ VBadge,
 	},
 };
 </script>
-
-<style lang="scss">
-.operations {
-	& .v-row .v-col {
-		flex-basis: 100%;
-
-		&:nth-child(1) {
-			flex-basis: 3.2rem;
-		}
-
-		&:nth-child(2) {
-			flex-basis: 10rem;
-		}
-
-		&:nth-child(3), &:nth-child(4) {
-			flex-basis: 5.2rem;
-		}
-
-		&:nth-child(5) {
-			flex-basis: 6.4rem;
-		}
-
-		&:nth-child(6) {
-			flex-basis: 33%;
-		}
-	}
-}
-</style>

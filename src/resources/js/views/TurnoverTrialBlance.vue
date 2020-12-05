@@ -38,53 +38,46 @@
 </v-cont>
 
 <v-table class="ttb">
-    <template v-slot:header>
-        <v-col fixed>Счет</v-col>
-        <v-col>Сальдо на начало периода</v-col>
-        <v-col>Обороты за период</v-col>
-        <v-col>Сальдо на конец периода</v-col>
+    <template v-slot:head>
+        <v-tr>
+            <v-th colspan="2">Счет</v-th>
+            <v-th colspan="2">Сальдо на начало периода</v-th>
+            <v-th colspan="2">Обороты за период</v-th>
+            <v-th colspan="2">Сальдо на конец периода</v-th>
+        </v-tr>
+
+        <v-tr>
+            <v-th>Код</v-th>
+            <v-th>Наименование счета</v-th>
+            <v-th>Дебет</v-th>
+            <v-th>Кредит</v-th>
+            <v-th>Дебет</v-th>
+            <v-th>Кредит</v-th>
+            <v-th>Дебет</v-th>
+            <v-th>Кредит</v-th>
+        </v-tr>
     </template>
 
-    <template v-if="is_loading">
-        <v-row>
-            Loading...
-        </v-row>
-    </template>
+    <v-tr v-for="acc in items" :key="acc.id">
+        <v-td>{{ acc.id }}</v-td>
+        <v-td>{{ acc.name }}</v-td>
+        <v-td num>{{ format(acc.start.debit) }}</v-td>
+        <v-td num>{{ format(acc.start.credit) }}</v-td>
+        <v-td num>{{ format(acc.turnover.debit) }}</v-td>
+        <v-td num>{{ format(acc.turnover.credit) }}</v-td>
+        <v-td num>{{ format(acc.end.debit) }}</v-td>
+        <v-td num>{{ format(acc.end.credit) }}</v-td>
+    </v-tr>
 
-    <template v-else>
-    <v-row>
-        <v-col fixed>Код</v-col>
-        <v-col fixed>Наименование счета</v-col>
-        <v-col>Дебет</v-col>
-        <v-col>Кредит</v-col>
-        <v-col>Дебет</v-col>
-        <v-col>Кредит</v-col>
-        <v-col>Дебет</v-col>
-        <v-col>Кредит</v-col>
-    </v-row>
-
-    <v-row v-for="acc in items" :key="acc.id">
-        <v-col fixed>{{ acc.id }}</v-col>
-        <v-col fixed>{{ acc.name }}</v-col>
-        <v-col>{{ normalized(acc.start.debit) }}</v-col>
-        <v-col>{{ normalized(acc.start.credit) }}</v-col>
-        <v-col>{{ normalized(acc.turnover.debit) }}</v-col>
-        <v-col>{{ normalized(acc.turnover.credit) }} </v-col>
-        <v-col>{{ normalized(acc.end.debit) }}</v-col>
-        <v-col>{{ normalized(acc.end.credit) }}</v-col>
-    </v-row>
-
-    <v-row class="ttb-total">
-        <v-col fixed></v-col>
-        <v-col fixed></v-col>
-        <v-col>{{ normalized(start.debit) }}</v-col>
-        <v-col>{{ normalized(start.credit) }}</v-col>
-        <v-col>{{ normalized(turnover.debit) }}</v-col>
-        <v-col>{{ normalized(turnover.credit) }}</v-col>
-        <v-col>{{ normalized(end.debit) }}</v-col>
-        <v-col>{{ normalized(end.credit) }}</v-col>
-    </v-row>
-    </template>
+    <v-tr class="ttb-total">
+        <v-td colspan="2"></v-td>
+        <v-td num>{{ format(start.debit) }}</v-td>
+        <v-td num>{{ format(start.credit) }}</v-td>
+        <v-td num>{{ format(turnover.debit) }}</v-td>
+        <v-td num>{{ format(turnover.credit) }}</v-td>
+        <v-td num>{{ format(end.debit) }}</v-td>
+        <v-td num>{{ format(end.credit) }}</v-td>
+    </v-tr>
 
 </v-table>
 </div>
@@ -128,7 +121,6 @@ export default {
         },
     },
     methods: {
-        normalized: (value) => value ? (Number(value)).toFixed(2) : "",
         async fetch() {
             this.is_loading = true;
             const url = 'reports/trial_balance?';
@@ -210,26 +202,6 @@ export default {
 
     &-cont {
         width: 100%;
-    }
-
-    & .v-row .v-col {
-        flex-basis: 100%;
-
-		&:nth-child(1) {
-			flex-basis: 3.2rem;
-		}
-
-		&:nth-child(2) {
-			flex-basis: 30rem;
-		}
-	}
-
-    & .v-row:nth-child(1) .v-col {
-        flex-basis: 100%;
-
-        &:nth-child(1) {
-			flex-basis: 33.2rem;
-		}
     }
 }
 </style>
