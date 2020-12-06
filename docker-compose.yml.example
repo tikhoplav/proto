@@ -1,5 +1,8 @@
 version: "3.8"
 
+volumes:
+  dbdata:
+
 services:
   app:
     build: .
@@ -24,6 +27,12 @@ services:
       - POSTGRES_DB=proto
       - POSTGRES_USER=proto
       - POSTGRES_PASSWORD=proto
+    volumes:
+      - type: volume
+        source: dbdata
+        target: /var/lib/postgresql/data
+        volume:
+          nocopy: true
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U proto -d proto"]
       interval: 10s

@@ -1,0 +1,38 @@
+$color-highlight: #d5e5ff;
+
+html {
+	font-size: 12px;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.table {
+	$border: 1px solid #e0e0e0;
+
+	width: 100%;
+	text-align: left;
+	border-top: $border;
+	border-left: $border;
+	border-collapse: collapse;
+
+	& th, & td {
+		border-right: $border;
+		border-bottom: $border;
+		padding: .6rem;
+	}
+
+	&-id {
+		text-align: right;
+		width: .3rem;
+	}
+
+	&.clickable {
+		& tbody tr:hover {
+			cursor: pointer;
+			background-color: $color-highlight;
+		}
+	}
+}

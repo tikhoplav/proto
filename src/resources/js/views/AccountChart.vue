@@ -1,5 +1,5 @@
 <template>
 <div>
-	Hello from vue!
+	This is accounts
 </div>
 </template>
