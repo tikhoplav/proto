@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import AccountChart from "./views/AccountChart.vue";
+import AccountChart from "./views/AccountChart";
 
 export default {
 	name: 'App',

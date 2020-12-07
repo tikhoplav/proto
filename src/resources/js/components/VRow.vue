@@ -12,13 +12,11 @@ export default {
         align: String,
     },
     computed: {
-        mods() {
-            return [
-                {
-                    wrap: this.wrap,
-                },
-                `align-${this.align}`,
-            ];  
+        mods: function() {
+            return {
+                wrap: this.wrap,
+                [`align-${this.align}`]: !!this.align,
+            };
         },
     },
 };

@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,400;0,700;0,900;1,200;1,400;1,700;1,900&display=swap');
+
 $color-highlight: #d5e5ff;
 
 html {
-	font-size: 12px;
+	font-size: 14px;
+	font-family: 'Nunito', sans-serif;
+	line-height: 1.6rem;
 }
 
 body {
@@ -9,7 +13,7 @@ body {
 	padding: 0;
 }
 
-.table {
+table {
 	$border: 1px solid #e0e0e0;
 
 	width: 100%;
@@ -24,15 +28,25 @@ body {
 		padding: .6rem;
 	}
 
-	&-id {
-		text-align: right;
-		width: .3rem;
+	& input {
+		padding: 0;
+		border: none;
+		outline: none;
+		background-color: transparent;
+		font-size: 14px;
+		font-family: 'Nunito', sans-serif;
+		width: 100%;
 	}
 
-	&.clickable {
-		& tbody tr:hover {
-			cursor: pointer;
-			background-color: $color-highlight;
+	& .material-design-icon__svg {
+		color: #4444;
+		margin-top: -2px;
+		margin-bottom: -6px;
+		width: 24px;
+		height: 24px;
+
+		&:hover {
+			color:#020202;
 		}
 	}
 }

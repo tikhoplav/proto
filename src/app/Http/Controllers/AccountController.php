@@ -14,7 +14,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        //
+        return Account::expanded()->orderBy('id', 'asc')->get();
     }
 
     /**
@@ -25,7 +25,13 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $valid = $request->validate([
+            'id' => 'required|unique:accounts,id',
+            'name' => 'required',
+            'desc' => 'sometimes',
+        ]);
+
+        return Account::create($valid);
     }
 
     /**
@@ -36,7 +42,7 @@ class AccountController extends Controller
      */
     public function show(Account $account)
     {
-        //
+        return $account;
     }
 
     /**
@@ -48,7 +54,14 @@ class AccountController extends Controller
      */
     public function update(Request $request, Account $account)
     {
-        //
+        $valid = $request->validate([
+            'name' => 'sometimes',
+            'desc' => 'sometimes',
+        ]);
+
+        $account->fill($valid)->save();
+
+        return $account->load('subaccounts');
     }
 
     /**
@@ -59,6 +72,6 @@ class AccountController extends Controller
      */
     public function destroy(Account $account)
     {
-        //
+        abort(405, 'Not implemented');
     }
 }
