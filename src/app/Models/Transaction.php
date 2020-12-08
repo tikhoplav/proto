@@ -2,23 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Subaccount extends Model
+class Transaction extends Model
 {
-	/**
-     * The "type" of the auto-incrementing ID.
-     *
-     * @var string
-     */
-    protected $keyType = 'string';
-    
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
-    public $incrementing = false;
+    use HasFactory;
 
     /**
      * Indicates if the model should be timestamped.
@@ -33,8 +22,9 @@ class Subaccount extends Model
      * @var array
      */
     protected $fillable = [
-    	'id',
-    	'name',
+    	'debit_id',
+    	'credit_id',
+    	'amount',
     	'desc',
     ];
 
@@ -48,20 +38,21 @@ class Subaccount extends Model
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'account_id',
-    ];
-
-    /**
-     * Get parent account.
+     * Get debit account of the transaction
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function account()
+    public function debit()
+    {
+    	return $this->belongsTo(Account::class);
+    }
+
+    /**
+     * Get debit account of the transaction
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function credit()
     {
     	return $this->belongsTo(Account::class);
     }

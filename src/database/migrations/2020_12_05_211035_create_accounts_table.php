@@ -16,6 +16,13 @@ class CreateAccountsTable extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->string('id');
             $table->primary('id');
+            $table->string('parent_id')->nullable();
+            $table->foreign('parent_id')
+                ->references('id')
+                ->on('accounts')
+                ->onUpdate('cascade')
+                ->onDelete('cascade')
+            ;
             $table->string('name');
             $table->text('desc');
         });
