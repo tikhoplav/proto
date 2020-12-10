@@ -16,12 +16,6 @@ class AccountChartSeeder extends Seeder
     {
         Account::upsert([
             [
-                'id' => '01',
-                'name' => 'Недвижимость',
-				'desc' => '',
-                'parent_id' => null,
-            ],
-            [
                 'id' => '23',
                 'name' => 'Услуги',
 				'desc' => '',
@@ -41,14 +35,14 @@ class AccountChartSeeder extends Seeder
             ],
             [
                 'id' => '23.1.1.1',
-                'name' => 'Impersonal Ian',
-				'desc' => '',
+                'name' => 'Imperial',
+                'desc' => '',
                 'parent_id' => '23.1.1',
             ],
             [
                 'id' => '23.1.1.2',
-                'name' => 'PsykeServ',
-				'desc' => '',
+                'name' => 'Frankfurt',
+                'desc' => '',
                 'parent_id' => '23.1.1',
             ],
             [
@@ -58,14 +52,20 @@ class AccountChartSeeder extends Seeder
                 'parent_id' => '23.1',
             ],
             [
-                'id' => '23.2',
-                'name' => 'Интернет',
-				'desc' => '',
-                'parent_id' => '23',
+                'id' => '23.1.2.1',
+                'name' => 'tikhoplav.com',
+                'desc' => '',
+                'parent_id' => '23.1.2',
             ],
             [
-                'id' => '23.3',
-                'name' => 'Телефония',
+                'id' => '23.1.2.2',
+                'name' => 'psykespb.com',
+                'desc' => '',
+                'parent_id' => '23.1.2',
+            ],
+            [
+                'id' => '23.2',
+                'name' => 'Интернет',
 				'desc' => '',
                 'parent_id' => '23',
             ],
@@ -82,9 +82,39 @@ class AccountChartSeeder extends Seeder
                 'parent_id' => null,
             ],
             [
+                'id' => '60.1',
+                'name' => 'Beget',
+                'desc' => '',
+                'parent_id' => '60',
+            ],
+            [
+                'id' => '60.2',
+                'name' => 'Reg.ru',
+                'desc' => '',
+                'parent_id' => '60',
+            ],
+            [
+                'id' => '62',
+                'name' => 'Клиенты и заказчики',
+                'desc' => '',
+                'parent_id' => null,
+            ],
+            [
+                'id' => '62.1',
+                'name' => 'JW',
+                'desc' => '',
+                'parent_id' => '62',
+            ],
+            [
+                'id' => '62.2',
+                'name' => 'Quest Pair',
+                'desc' => '',
+                'parent_id' => '62',
+            ],
+            [
                 'id' => '90',
                 'name' => 'Доходы и расходы',
-				'desc' => '',
+                'desc' => '',
                 'parent_id' => null,
             ],
         ], ['id']);
